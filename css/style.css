@@ -15,9 +15,10 @@
 }
 
 body {
-  font-family: "PixelRegular", sans-serif;
+  font-family: "PixelRegular", Monospace;
   background-color: #212529;
   color: #f8f9fa;
+  font-size: 30px;
 }
 
 h1 {
@@ -29,7 +30,7 @@ h2 {
 }
 
 p {
-  font-size: 20px;
+  font-size: px;
 }
 
 nav ul {
@@ -62,9 +63,10 @@ li a:hover {
 .body {
   background-color: #343A40;
   margin: 5%;
+  padding: 12%;
   align-items: center;
-  display: flex;
   flex-direction: column;
+  border-radius: 50px;
 }
 
 /* index.html */
@@ -74,7 +76,7 @@ li a:hover {
 }
 
 .discordstatus {
-  padding: 10%;
+  padding: 4%;
 }
 
 /* contact.html */

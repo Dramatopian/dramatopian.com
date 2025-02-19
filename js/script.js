@@ -1,3 +1,4 @@
+// Status Display
 const socket = new WebSocket("wss://api.lanyard.rest/socket");
 
 socket.onopen = () => {
@@ -23,30 +24,25 @@ async function fetchLanyard() {
         const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
         const { data } = await response.json();
 
-        let activityText = [];
+        let activityText = new Set();
         let isListeningToSpotify = false;
 
         if (data.spotify) {
             isListeningToSpotify = true;
-            activityText.push(`Listening to Spotify - ${data.spotify.song}`);
+            activityText.add(`Listening to Spotify - ${data.spotify.song} <br> ${data.spotify.artist}`);
         }
 
         data.activities.forEach(activity => {
-            if (isListeningToSpotify && activity.name === "Spotify") {
-                return;
-            }
-
-            if (activity.type === 0) { 
-                activityText.push(`Playing ${activity.name}`);
-            } else {
-                activityText.push(`On ${activity.name}`);
+            if (isListeningToSpotify && activity.name === "Spotify") return;
+            if (activity.type === 0) {
+                activityText.add(`Playing ${activity.name}`);
             }
         });
 
         const activityContainer = document.getElementById("current-activity");
-        activityContainer.innerHTML = activityText.length > 0 
-        ? `Currently:<br><span>${activityText.join("<br>")}</span>` 
-        : "No current activity";
+        activityContainer.innerHTML = activityText.size > 0 
+            ? `Currently:<br>${[...activityText].join("<br>")}` 
+            : "No current activity";
 
     } catch (error) {
         console.error("Error fetching Lanyard data:", error);
@@ -56,3 +52,20 @@ async function fetchLanyard() {
 fetchLanyard();
 setInterval(fetchLanyard, 5000);
 
+// Welcome message
+var example = ['A', 'B', 'C', 'D'];
+
+textSequence(0);
+function textSequence(i) {
+
+    if (example.length > i) {
+        setTimeout(function() {
+            document.getElementById("sequence").innerHTML = example[i];
+            textSequence(++i);
+        }, 1000); // 1 second (in milliseconds)
+
+    } else if (example.length == i) { // Loop
+        textSequence(0);
+    }
+
+}
