@@ -2,31 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
-    <link rel="manifest" href="assets/images/site.webmanifest" />
-    <link rel="preload" as="image" href="https://lanyard.cnrad.dev/api/620229764996923402?theme=dark&bg=212121&idleMessage=Currently%20Free!&hideStatus=true" />
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="assets/images/site.webmanifest"
+    />
   </head>
   <body>
+    <script
+      src="/js/script.js"
+      defer
+    ></script>
     <nav>
       <ul class="navbar">
-        <li style="float: left"><a href="index.html" class="active">Home</a></li>
+        <li style="float: left">
+          <a
+            href="index.html"
+            class="active"
+            >Home</a
+          >
+        </li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
     <div class="body">
-      <h1 class="welcomemessage">Hi!</h1>
-      <h2>I'm Dramatopian</h2>
-      <br />
-      <a href="index.html" class="discordstatus">
-        <img src="https://lanyard.cnrad.dev/api/620229764996923402?theme=dark&bg=212121&idleMessage=Currently%20Free!&hideStatus=true" alt="Discord Status" />
-      </a>
+      <div class="body-message">
+        <h1 class="welcomemessage">Hi!</h1>
+        <h2>I'm Dramatopian</h2>
+        <br />
+        <div class="discordstatus">
+          <p id="current-activity">Checking activity...</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
