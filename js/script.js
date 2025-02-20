@@ -29,7 +29,7 @@ async function fetchLanyard() {
 
         if (data.spotify) {
             isListeningToSpotify = true;
-            activityText.add(`Listening to Spotify - ${data.spotify.song} <br> ${data.spotify.artist}`);
+            activityText.add(`Listening to Spotify - ${data.spotify.song} by ${data.spotify.artist}`);
         }
 
         data.activities.forEach(activity => {
@@ -51,21 +51,3 @@ async function fetchLanyard() {
 
 fetchLanyard();
 setInterval(fetchLanyard, 5000);
-
-// Welcome message
-var example = ['A', 'B', 'C', 'D'];
-
-textSequence(0);
-function textSequence(i) {
-
-    if (example.length > i) {
-        setTimeout(function() {
-            document.getElementById("sequence").innerHTML = example[i];
-            textSequence(++i);
-        }, 1000); // 1 second (in milliseconds)
-
-    } else if (example.length == i) { // Loop
-        textSequence(0);
-    }
-
-}

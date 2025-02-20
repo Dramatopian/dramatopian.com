@@ -21,18 +21,6 @@ body {
   font-size: 30px;
 }
 
-h1 {
-  font-size: 50px;
-}
-
-h2 {
-  font-size: 30px;
-}
-
-p {
-  font-size: px;
-}
-
 nav ul {
   list-style-type: none;
   position: relative;
@@ -41,6 +29,7 @@ nav ul {
   background-color: #6C757D;
   overflow: hidden;
 }
+
 .navbar li {
   float: right;
 }
@@ -56,14 +45,15 @@ li a {
   text-align: center;
   border-radius: 15px;
 }
+
 li a:hover {
   background-color: #464E56;
 }
 
 .body {
   background-color: #343A40;
-  margin: 5%;
-  padding: 12%;
+  margin: 3%;
+  padding: 8%;
   align-items: center;
   flex-direction: column;
   border-radius: 50px;
@@ -79,24 +69,58 @@ li a:hover {
   padding: 4%;
 }
 
-/* contact.html */
+/* about.html */
 .rounded-box {
   display: flex;
-  align-items: center;
-  background: linear-gradient(45deg, #1e90ff, #00bfff);
-  border-radius: 50px;
-  padding: 10px 20px;
-  margin: 10px;
-  font-family: Arial, sans-serif;
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  justify-content: center;
   text-decoration: none;
-  width: 50%;
+  font-weight: bold;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 40px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  font-size: 18px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.rounded-box:hover {
+  transform: scale(1.05);
 }
 
 .rounded-box img {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   margin-right: 10px;
+}
+
+.steam {
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+}
+
+.discord {
+  background: linear-gradient(45deg, #7289da, #5865F2);
+}
+
+.reddit {
+  background: linear-gradient(45deg, #ff4500, #ff5700);
+}
+
+.x {
+  background: linear-gradient(45deg, #000000, #434343);
+}
+
+.spotify {
+  background: linear-gradient(45deg, #1db954, #1ed760);
+}
+
+.lastfm {
+  background: linear-gradient(45deg, #ba0000, #e50914);
 }
