@@ -83,12 +83,16 @@ li a:hover {
   transition: transform 0.2s ease-in-out;
   font-size: 18px;
 }
+.about {
+  float: left;
+  width: 50%;
+}
 
-.contact {
-  display: flex;
-  flex-direction: column;
+.about.after {
+  float: right;
+  display: table;
+  clear: both;
   gap: 15px;
-  align-items: center;
 }
 
 .rounded-box:hover {
@@ -123,4 +127,26 @@ li a:hover {
 
 .lastfm {
   background: linear-gradient(45deg, #ba0000, #e50914);
+}
+
+@media (max-width: 768px) {
+  .body {
+    flex-direction: column;
+    text-align: center;
+    padding: 6%;
+  }
+
+  .about {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact {
+    align-items: center;
+  }
+
+  .rounded-box {
+    width: 90%;
+    justify-content: center;
+  }
 }
