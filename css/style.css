@@ -19,8 +19,8 @@ body {
 nav ul {
   list-style-type: none;
   position: relative;
-  padding: 0;
-  width: 100%;
+  padding: 15px;
+  height: 70px;
   background-color: #6C757D;
   overflow: hidden;
 }
@@ -28,6 +28,7 @@ nav ul {
 .navbar li {
   float: right;
 }
+
 .active {
   background-color: #343A40;
 }
@@ -47,11 +48,11 @@ li a:hover {
 
 .body {
   background-color: #343A40;
-  margin: 3%;
   padding: 8%;
   align-items: center;
   flex-direction: column;
   border-radius: 50px;
+  scale: 70%;
 }
 
 /* index.html */
