@@ -1,0 +1,16 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Layout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+const path = Astro.url.pathname.replace(/\//g, "");
+---
+
+<Layout title="Projects">
+    <Navigation active={path} />
+    <div class="flex h-screen w-screen">
+        <div
+            class="m-auto flex w-full max-w-4xl flex-col justify-center bg-slate-800 p-5 pt-20 md:rounded-xl md:p-10 md:pt-10">
+            <p>Placeholder</p>
+        </div>
+    </div>
+</Layout>

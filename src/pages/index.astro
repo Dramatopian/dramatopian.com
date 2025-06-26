@@ -1,0 +1,95 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Layout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+const path = Astro.url.pathname.replace(/\//g, "");
+---
+
+<Layout title="Home">
+    <Navigation active={path} />
+    <div class="flex h-screen w-screen">
+        <div
+            class="m-auto flex h-full w-full max-w-4xl flex-col items-center justify-center bg-slate-800 p-5 md:h-auto md:rounded-xl md:p-10">
+            <h1 class="mb-4 text-center text-6xl font-bold">Hi!</h1>
+            <h2 class="text-center text-3xl font-semibold">I'm Dramatopian</h2>
+            <div id="discord-status" class="mt-12 hidden flex-col gap-0.5 text-center text-lg">
+                <p id="status"></p>
+                <p id="spotify-activity"></p>
+                <p id="game-activity"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const url = "wss://lanyard.tkkr.dev/socket";
+        const ws = new WebSocket(url);
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            switch (data.op) {
+                case 0: {
+                    const discordStatusSection = document.getElementById("discord-status");
+                    const statusEl = document.getElementById("status");
+                    const spotifyActivityEl = document.getElementById("spotify-activity");
+                    const gameActivityEl = document.getElementById("game-activity");
+                    if (discordStatusSection) {
+                        discordStatusSection.classList.remove("hidden");
+                        discordStatusSection.classList.add("flex");
+                        if (statusEl) {
+                            const statusMap = {
+                                dnd: "do not disturb",
+                                online: "online",
+                                idle: "idle",
+                                offline: "offline",
+                            };
+                            let statusText =
+                                statusMap[data.d.discord_status as "online" | "idle" | "dnd" | "offline"] || "offline";
+                            if (data.d.active_on_discord_mobile as boolean) statusText += " (mobile)";
+                            if (data.d.discord_status) {
+                                statusEl.innerHTML = `Currently <span class="font-bold">${statusText}</span> on Discord`;
+                            }
+                        }
+                        if (spotifyActivityEl) {
+                            const spotify = data.d.spotify;
+                            if (spotify) {
+                                spotifyActivityEl.innerHTML = `Listening to <span class="font-bold">${spotify.song}</span> by <span class="font-bold">${spotify.artist}</span>`;
+                            }
+                        }
+                        if (gameActivityEl) {
+                            const filtered = [];
+                            if (data.d.activities?.length) {
+                                filtered.push(
+                                    ...data.d.activities?.filter((a: { type: number }) => a.type !== 2 && a.type !== 4),
+                                );
+                            }
+                            if (filtered.length > 0) {
+                                gameActivityEl.innerHTML = `Playing <span class="font-bold">${filtered.map((e) => e.name).join(", ")}</span>`;
+                            }
+                        }
+                    }
+                    break;
+                }
+                case 1: {
+                    ws.send(
+                        JSON.stringify({
+                            op: 2,
+                            d: {
+                                subscribe_to_id: "620229764996923402",
+                            },
+                        }),
+                    );
+                    setInterval(() => {
+                        ws.send(JSON.stringify({ op: 3 }));
+                    }, data.d.heartbeat_interval);
+                    break;
+                }
+                default: {
+                    console.warn("[Lanyard] Unknown opcode", data);
+                    break;
+                }
+            }
+        };
+        ws.onerror = (error) => {
+            console.error("[Lanyard] WebSocket error", error);
+        };
+    </script>
+</Layout>

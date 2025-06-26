@@ -1,0 +1,38 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { Font } from "astro:assets";
+import Meta from "../components/Meta.astro";
+import "../styles/global.css";
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+        <link rel="shortcut icon" href="/icons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+        <link rel="manifest" href="/icons/site.webmanifest" />
+        <title>{title}</title>
+        <Font cssVariable="--font-figtree" preload />
+        <Font cssVariable="--font-jetbrains-mono" preload />
+        <style>
+            html {
+                font-family: var(--font-figtree);
+            }
+            code,
+            .code {
+                font-family: var(--font-jetbrains-mono);
+            }
+        </style>
+        <Meta />
+    </head>
+    <body class="bg-slate-950 text-slate-100">
+        <slot />
+        <SpeedInsights />
+        <Analytics />
+    </body>
+</html>
