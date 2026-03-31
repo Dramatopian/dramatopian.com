@@ -21,7 +21,7 @@ const path = Astro.url.pathname.replace(/\//g, "");
     </div>
 
     <script>
-        const url = "wss://lanyard.tkkr.dev/socket";
+        const url = "wss://l.tkkr.dev/socket";
         const ws = new WebSocket(url);
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
